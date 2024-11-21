@@ -1,0 +1,37 @@
+
+
+There are four sub-steps required to run experiments:
+1. Preprocessing
+2. Word alignments extraction
+3. Phrase embeddings extraction
+4. Training/evaluation
+
+
+
+1. cloning mosesdecoder 
+    git clone https://github.com/moses-smt/mosesdecoder
+    ./scripts/preprocess.sh data de en ./mosesdecoder
+
+
+2. Install fastalign 
+    git clone https://github.com/clab/fast_align.git
+    cd fast_align
+    mkdir build
+    cmake build
+    cmake -G "MinGW Makefiles" ..
+    This should generate the fast_align.exe and atools.exe files in the build directory.
+    ./scripts/get_align.sh data de en ./fast_align
+
+
+3. Phrase embeddings
+    pip install torch-2.0.1 torchdata-0.6.1 torchtext-0.15.2
+    run main file in src folder 
+
+4. Training
+    run train file
+
+5. Testing and evaluation
+    run test file 
+    candidate and references are generated and erase EOS UNK BOS from them
+    and run bleu_score.py  
+
